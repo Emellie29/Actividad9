@@ -16,39 +16,44 @@ while True:
                 codigo = int(input("Codigo de cliente: "))
                 nombre = input("Nombre del cliente: ")
                 print("☺☺☺Destinos turísticos☺☺☺")
-                destinos={}
-                destinoT= int(input("Ingrese la cantidad de destinos: "))
-                for _ in range(destinoT):
-                    lugares= input("Nombre del destino: ")
-                    print(f"Destino {lugares} guardado con éxito")
-                destinos[destinoT]={
-                    "lugares":lugares}
                 clientes[codigo] = {
                     "nombre": nombre,
-                    "destinos": destinos,
+                    "destinos": [],
                     "codigo": codigo
                 }
+                destinoT= int(input("Ingrese la cantidad de Destinos: "))
+                for _ in range(destinoT):
+                    lugar= input("Nombre del destino: ")
+                    clientes[codigo]["destinos"].append(lugar)
+                    print(f"Destino {lugar} guardado con éxito")
         case "2":
-            print("Listado de Clientes con su destino")
+            print("Listado de Clientes con sus Destinos")
             for codigo, datos in clientes.items():
                 print(f"\nCódigo: {codigo}")
                 print(f"Nombre: {datos["nombre"]}")
                 print(f"Destino: ")
                 for destinos in datos['destinos']:
-                    print(f"{datos["destinos"]}")
+                    print(f" ► {destinos}")
         case "3":
-            print("Total de destinos")
-            def contar(destinos):
-                if destinos == len(lugares):
+            def contar_destinos(lista, indice=0):
+                if indice == len(lista):
                     return 0
-                if destinos[destinos].lower()== lugares.lower():
-                    return contar(destinos,lugares, destinos+1)+1
-                else:
-                    return contar(destinos,lugares,destinos+1)
-            palabra=input(": ")
-            letra=input(": ")
+                d_actual = len(lista[indice]["destinos"])
+                return d_actual + contar_destinos(lista, indice + 1)
+            total = contar_destinos(list(clientes.values()))
+            print(f"Total de destinos: {total}")
         case "4":
-            print("Clientes con más destinos")
+            def cliente_viajero(clientes):
+                max_destinos=-1
+                cliente_top= ""
+                for datos in clientes.values():
+                    cantidad = len(datos["destinos"])
+                    if cantidad > max_destinos:
+                        max_destinos = cantidad
+                        cliente_top = datos["nombre"]
+                return cliente_top, max_destinos
+            nombre, cantidad = cliente_viajero(clientes)
+            print(f"Cliente con más destinos: {nombre} con {cantidad} destinos")
         case "5":
             print("Salir")
             break
