@@ -44,14 +44,14 @@ while True:
             print(f"Total de destinos: {total}")
         case "4":
             def cliente_viajero(clientes):
-                max_destinos=-1
-                cliente_top= ""
+                destinosf=-1
+                clientef= ""
                 for datos in clientes.values():
                     cantidad = len(datos["destinos"])
-                    if cantidad > max_destinos:
-                        max_destinos = cantidad
-                        cliente_top = datos["nombre"]
-                return cliente_top, max_destinos
+                    if cantidad > destinosf:
+                        destinosf = cantidad
+                        clientef = datos["nombre"]
+                return clientef, destinosf
             nombre, cantidad = cliente_viajero(clientes)
             print(f"Cliente con más destinos: {nombre} con {cantidad} destinos")
         case "5":
