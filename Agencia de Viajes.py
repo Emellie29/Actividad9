@@ -13,7 +13,7 @@ while True:
             cantidad = int(input("Ingrese la cantidad de Clientes: "))
             for i in range(cantidad):
                 print(f"\nCliente No.{i + 1}")
-                codigo = int(input("Codigo de cliente: "))
+                codigo = input("Codigo de cliente: ")
                 nombre = input("Nombre del cliente: ")
                 print("☺☺☺Destinos turísticos☺☺☺")
                 clientes[codigo] = {
